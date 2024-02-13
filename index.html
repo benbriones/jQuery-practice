@@ -73,18 +73,23 @@
   <script src="https://unpkg.com/jquery"></script>
   <script>
     $('article img').attr('class', 'image-center');
+    //$('article img').addClass('image-center');
+
     $('article p:nth-child(7)').remove(); // question?
     // .eq(5)
     // .remove();
-    $('#title').css('font-size', `${Math.random() * 100}px`);
+    //last child and last of type
 
+    $('#title').css('font-size', `${Math.random() * 100}px`);
 
     let $loveLists = $('ol li');
     let $listItem = $('<li>').text('Lists are actually useful');
     $loveLists.append($listItem);
+    //$("ol").append("<li>", {text: "Lists are acutally useful", class: "red", id: "main-list"});
+    //$("ol").append("<li>Lists are actually useful</li>");
 
     //question on paragraph length
-    let $newParagraph = $('<p>').text('this is a paragraph, sorry about the misunderstanding!');
+    let $newParagraph = $('<p>').text(`this is a paragraph, sorry about the misunderstanding!`);
     $('aside').html($newParagraph);
 
     /*
@@ -97,17 +102,26 @@
     get rgb
     get inputs with class col-sm-4
     */
-   let $formInputs = $('.form-control');
-   $formInputs.on('change', changeBackground);
+    let $formInputs = $('.form-control');
+    $formInputs.on('change', changeBackground);
 
-   function changeBackground() {
+    /**
+     * Retrieves Red Blue Green input values upon change, and adjust
+     * background-color to correspond with the values.
+    */
 
-    let red = $('.form-control').eq(0).val();
-    let blue = $('.form-control').eq(1).val();
-    let green = $('.form-control').eq(2).val();
+    function changeBackground() {
 
-    $('body').css('background-color',`rgb(${red}, ${blue}, ${green})`);
-   }
+      let red = $('.form-control').eq(0).val();
+      let blue = $('.form-control').eq(1).val();
+      let green = $('.form-control').eq(2).val();
+
+      $('body').css('background-color', `rgb(${red}, ${blue}, ${green})`);
+    }
+
+    $("img").on("click", function (evt) {
+      $(evt.target).remove();
+    })
 
   </script>
 </body>
