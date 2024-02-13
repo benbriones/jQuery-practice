@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+
+  <form>
+    <label for="movie-title">Movie Title</label>
+    <input id="movie-title" type="text">
+    <label for="movie-rating">Movie Rating</label>
+    <input id="movie-rating" type="text">
+    <button id="submit-button">Submit</button>
+  </form>
+  <div class="ratings-container"></div>
+
+
+  <script>
+    $('form').on("submit", addMovieInfo);
+    $('.ratings-container').on('click', '#delete-button', movieRemove);
+
+    /*
+      Removes movie data from the DOM upon button submit.
+    */
+
+    function movieRemove(evt) {
+      $(evt.target).parent().remove();
+    }
+
+    /*
+        Grabs data from inputs and append them to the DOM with a delete button.
+    */
+
+    function addMovieInfo(evt) {
+      evt.preventDefault();
+
+      const movieTitle = $("#movie-title").val();
+      const movieRating = $("#movie-rating").val();
+      const $container = $(".ratings-container");
+
+      if (movieTitle.length < 2) {
+        alert("Not a valid movie title");
+        return;
+      }
+
+      const $movieValues = $(
+        "<div>",
+        { class: 'movieValue', text: `Title: ${movieTitle}, Rating: ${movieRating}` }
+      );
+      const $deleteButton = $("<button>", { text: 'Delete', id: 'delete-button' });
+      movieValues.append($deleteButton);
+      $container.append($movieValues);
+    }
+
+
+
+
+  </script>
+
+</body>
+
+</html>
